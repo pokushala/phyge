@@ -15,7 +15,7 @@ class BaseModel:
     def __init__(self, storage: Storage, model_name='model'):
         self.storage = storage
         self.dct = storage.get_dct()
-        self.corpus = storage.get_corpus()
+        self.corpus = storage.get_corpus().copy()
         #self.dct.save(self.storage.tmp_path + '/deerwester.dict')
         #corpora.MmCorpus.serialize(self.storage.tmp_path + '/deerwester.mm', self.corpus)
         self.base_model = storage.get_model(model_name)
@@ -43,11 +43,11 @@ class BaseModel:
         answer_time = round((time.time() - start_time), 3)
         articles = self.storage.get_articles()
         found_articles = []
-        for index, similarity in sims[:amount]:
-            article_similarity = articles[index].copy()
-            article_similarity.update({'id': index,
-                                       'similarity':round(float(similarity), 3)})
-            article_similarity['text'] = (articles[index]['text'][:200]).replace("', '", '').replace("['", '') + '...'
+        for i, similarity in sims[:amount]:
+            article_similarity = articles[i].copy()
+            article_similarity.update({'id': i,
+                                       'similarity': round(float(similarity), 3)})
+            article_similarity['text'] = (articles[i]['text'][:200]).replace("', '", '').replace("['", '') + '...'
             article_similarity.pop('normalized_words')
             found_articles.append(article_similarity)
         return answer_time, self.model_name, found_articles

@@ -11,7 +11,7 @@ class Engine:
 
         self.query = query
         self.new_urls = None
-
+        self.load_by_urls()
         self.lda_model = LDAmodel(self.storage)
         self.lsi_model = LSImodel(self.storage)
         self.w2v_model = W2Vmodel(self.storage)

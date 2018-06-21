@@ -46,7 +46,7 @@ class Storage:
         with open(load_path, 'r', encoding="utf8") as json_file:
             data_urls = json.load(json_file)
             for u in data_urls:
-                urls.append(dict(url=u.get('url'), info=u.get(key, '')))
+                urls.append(dict(url=u.get('url'), status=u.get(key, '')))
         return urls
 
     def get_new_urls(self):
@@ -230,6 +230,8 @@ class Storage:
     def get_corpus(self):
         dct = self.get_dct()
         documents = self.get_words_list()
+        #print("dct",dct)
+        #print("document",documents)
         return [dct.doc2bow(doc) for doc in documents]
 
     # сохраняем корпус

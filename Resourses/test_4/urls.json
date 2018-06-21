@@ -42,17 +42,45 @@
     "chanel": "research"
   },
   {
-    "id": 16,
+    "id": 7,
     "data": "2018-03-14",
     "title": "Яндекс открывает Алису для всех разработчиков. Платформа Яндекс.Диалоги (бета)",
     "url": "https://habrahabr.ru/company/yandex/blog/350968/",
     "chanel": "research"
   },
   {
-    "id": 318,
+    "id": 8,
     "data": "2016-11-28",
     "title": "Руководство для начинающих VR-разработчиков",
     "url": "https://habrahabr.ru/company/mailru/blog/316024/",
     "chanel": "education-dev"
+  },
+  {
+    "id": 38,
+    "data": "2017-10-07",
+    "title": "Как Минковский во Flappy Bird играл",
+    "url": "https://habrahabr.ru/post/217645/",
+    "chanel": "research"
+  },
+  {
+    "id": 48,
+    "data": "2018-05-03",
+    "title": "50 (или 60) лет разработки процессоров… ради этого?",
+    "url": "https://geektimes.com/post/300365/",
+    "chanel": "research"
+  },
+  {
+    "id": 70,
+    "data": "2018-03-14",
+    "title": "Что такое CUI, и для чего нужно CUI применять в чат-боте?  | блог Evergreen",
+    "url": "http://evergreens.com.ua/ru/articles/what-is-cui.html",
+    "chanel": "ui"
+  },
+  {
+    "id": 71,
+    "data": "2017-04-20",
+    "title": "Инструкция для недизайнеров: как создать классную презентацию",
+    "url": "http://tilda.education/articles-how-to-create-presentation",
+    "chanel": "ui"
   }
 ]

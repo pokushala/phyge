@@ -40,8 +40,8 @@ class Parser:
             else:
                 current_url_status["status"] = "PARSE_ERR"
             urls_status.append(current_url_status)
-            storage.save_urls_status(urls_status)
-            storage.save_articles(articles)
+        storage.save_urls_status(urls_status)
+        storage.save_articles(articles)
         return articles
 
     def load_html(self, current_url):
