@@ -1,11 +1,9 @@
 from Interface import Interface
 import json
-import settings
 
 if __name__ == '__main__':
     interface = Interface()
     interface.start_engine()
-    #interface.get_result()
     m1, m2, m3 = interface.get_result()
     i=0
     for m in m1:

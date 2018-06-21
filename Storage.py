@@ -57,7 +57,6 @@ class Storage:
         """
         db_urls = [x.get('url') for x in self.get_urls(key='language')]
         old_urls = [x.get('url') for x in self.get_urls(key='status')]
-        #new_urls = list(set(db_urls) - set(old_urls))
         sbuf = set(old_urls)
         new_urls = [x for x in db_urls if x not in sbuf]
         return new_urls
