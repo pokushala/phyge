@@ -167,7 +167,7 @@ class Storage:
         :param model_name: name of the model
         :return: model
         """
-        print('%s model loadind...', model_name)
+        print('%s model loadind...'% model_name)
         if model_name == 'lsi':
             load_func = models.lsimodel.LsiModel.load
             load_path = self.lsi_path
@@ -199,7 +199,7 @@ class Storage:
         else:
             save_path = self.w2v_path
         model.save(save_path)
-        print('Model %s saved ', model_name)
+        print('Model %s saved '% model_name)
 
     def query_dict_to_text(self, query_dict):
         return query_dict['text']

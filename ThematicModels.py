@@ -43,13 +43,14 @@ class BaseModel:
         answer_time = round((time.time() - start_time), 3)
         articles = self.storage.get_articles()
         found_articles = []
-        for index, similarity in sims[0:amount]:
+        for index, similarity in sims[:amount]:
             article_similarity = articles[index].copy()
-            article_similarity.update({'id':index,
+            article_similarity.update({'id': index,
                                        'similarity':round(float(similarity), 3)})
-            article_similarity['text'] = (articles[index]['text'][0:200]).replace("', '", '').replace("['", '') + '...'
+            article_similarity['text'] = (articles[index]['text'][:200]).replace("', '", '').replace("['", '') + '...'
+            article_similarity.pop('normalized_words')
             found_articles.append(article_similarity)
-        return answer_time, found_articles
+        return answer_time, self.model_name, found_articles
 
 
 
@@ -59,8 +60,9 @@ class BaseModel:
         for query in self.storage.get_queries():
             query_text = query['text']
             query_vec = self.storage.query_to_vec(query_text)
-            answer_time, answer_articles = self.find_article(query_vec, amount=amount)
+            answer_time, model_name, answer_articles = self.find_article(query_vec, amount=amount)
             answers.append({'answer_time':answer_time,
+                            'model_name': model_name,
                             'answer_articles':answer_articles})
         return answers
 
