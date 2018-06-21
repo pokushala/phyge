@@ -1,0 +1,58 @@
+[
+  {
+    "id": 0,
+    "data": "2017-03-25",
+    "title": "«Всплеск, который быстро затухает»",
+    "url": "https://nplus1.ru/material/2017/03/24/abel-prize",
+    "chanel": "research"
+  },
+  {
+    "id": 1,
+    "data": "2017-04-21",
+    "title": "Эксперт Oculus: \"Переход к полной AR произойдет через 5-10 лет\"",
+    "url": "https://hightech.fm/2017/04/21/f8-ar?utm_source=telegram&utm_campaign=online_channel",
+    "chanel": "research"
+  },
+  {
+    "id": 3,
+    "data": "2018-01-24",
+    "title": "Распределённые вычисления: краткое введение в проекты BOINC",
+    "url": "https://geektimes.ru/post/271288/",
+    "chanel": "research"
+  },
+  {
+    "id": 4,
+    "data": "2018-03-19",
+    "title": "«Все на улицу!». NASA просит пользователей фотографировать облака | dev.by",
+    "url": "https://dev.by/lenta/main/nasa-globe-initiative",
+    "chanel": "research"
+  },
+  {
+    "id": 5,
+    "data": "2017-10-19",
+    "title": "NVIDIA: для фотореализма в ВР графика должна быть мощнее в 40 раз | Голографика",
+    "url": "https://holographica.space/news/nvidia-40x-13049",
+    "chanel": "research"
+  },
+  {
+    "id": 6,
+    "data": "2017-12-24",
+    "title": "Битва &amp;quot;космических&amp;quot; миллиардеров выходит на финишную прямую",
+    "url": "https://m.pikabu.ru/story/_5574677",
+    "chanel": "research"
+  },
+  {
+    "id": 16,
+    "data": "2018-03-14",
+    "title": "Яндекс открывает Алису для всех разработчиков. Платформа Яндекс.Диалоги (бета)",
+    "url": "https://habrahabr.ru/company/yandex/blog/350968/",
+    "chanel": "research"
+  },
+  {
+    "id": 318,
+    "data": "2016-11-28",
+    "title": "Руководство для начинающих VR-разработчиков",
+    "url": "https://habrahabr.ru/company/mailru/blog/316024/",
+    "chanel": "education-dev"
+  }
+]
