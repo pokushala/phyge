@@ -1,4 +1,4 @@
-import Engine
+from Engine import Engine
 
 
 class Interface:
@@ -22,4 +22,5 @@ class Interface:
 
     def start_engine(self):
         engine = Engine(self.query)
+        engine.load_by_urls()
         self.result = engine.get_result()

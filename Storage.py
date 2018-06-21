@@ -41,6 +41,8 @@ class Storage:
             load_path = self.urls_path
         else:
             load_path = self.urls_status_path
+        if not os.path.isfile(load_path):
+            return list()
         with open(load_path, 'r', encoding="utf8") as json_file:
             data_urls = json.load(json_file)
             for u in data_urls:
@@ -67,9 +69,11 @@ class Storage:
         :param urls_status_list: list with urls status
         :return:
         """
-        urls_status = self.get_urls('status')
-        urls_status.append(urls_status_list)
-        with open(self.articles_path, 'w', encoding="utf8") as file:
+        urls_status = []
+        if os.path.isfile(self.urls_status_path):
+            urls_status = self.get_urls('status')
+        urls_status = urls_status + urls_status_list
+        with open(self.urls_status_path, 'w', encoding="utf8") as file:
             s = json.dumps(urls_status, indent=2, ensure_ascii=False)
             file.write(s)
 
@@ -80,8 +84,10 @@ class Storage:
         :param articles_list: article list
         :return:
         """
-        articles = self.get_articles()
-        articles.append(articles_list)
+        articles = []
+        if os.path.isfile(self.articles_path):
+            articles = self.get_articles()
+        articles = articles + articles_list
         with open(self.articles_path, 'w', encoding="utf8") as file:
             s = json.dumps(articles, indent=2, ensure_ascii=False)
             file.write(s)
@@ -113,7 +119,7 @@ class Storage:
         :return: words data frame
         """
         articles_list = self.get_articles()
-        columns = [pd.Series(article.normalized_words) for article in articles_list]
+        columns = [pd.Series(article["normalized_words"]) for article in articles_list]
         pairs = zip(range(len(articles_list)), columns)
         data = dict((key, value) for key, value in pairs)
         df_words_in_doc = pd.DataFrame(data)
@@ -203,11 +209,14 @@ class Storage:
         documents = self.get_words_list()
         dct = corpora.Dictionary(documents)
         dct.save(self.dct_path)
-        #return dct
+        return dct
 
     # загружает словарь для модели
     def get_dct(self):
-        dct = corpora.Dictionary.load(self.dct_path)
+        if os.path.isfile(self.dct_path):
+            dct = corpora.Dictionary.load(self.dct_path)
+        else:
+            dct = self.save_dct()
         return dct
 
     # ГДЕ ЭТО ДОЛЖНО БЫТЬ?

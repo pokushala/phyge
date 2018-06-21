@@ -47,7 +47,7 @@ class BaseModel:
             article_similarity = articles[index].copy()
             article_similarity.update({'id':index,
                                        'similarity':round(float(similarity), 3)})
-            article_similarity.text = (articles[index].text[0:200]).replace("', '", '').replace("['", '') + '...'
+            article_similarity['text'] = (articles[index]['text'][0:200]).replace("', '", '').replace("['", '') + '...'
             found_articles.append(article_similarity)
         return answer_time, found_articles
 
@@ -57,7 +57,7 @@ class BaseModel:
     def show_result_info(self, amount=3):
         answers = []
         for query in self.storage.get_queries():
-            query_text = query.text
+            query_text = query['text']
             query_vec = self.storage.query_to_vec(query_text)
             answer_time, answer_articles = self.find_article(query_vec, amount=amount)
             answers.append({'answer_time':answer_time,
@@ -81,7 +81,7 @@ class LSImodel(BaseModel):
 
 class LDAmodel(BaseModel):
     def __init__(self, storage: Storage):
-        super().__init__(storage)
+        #super().__init__(storage)
         BaseModel.__init__(self, storage=storage, model_name='lda')
 
     def train_model(self):
@@ -95,7 +95,7 @@ class LDAmodel(BaseModel):
 
 class W2Vmodel(BaseModel):
     def __init__(self, storage: Storage):
-        super().__init__(storage)
+        #super().__init__(storage)
         BaseModel.__init__(self, storage=storage, model_name='w2v')
 
     def find_article(self, query_text, amount=5):
