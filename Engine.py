@@ -16,8 +16,8 @@ class Engine:
         self.lsi_model = LSImodel(self.storage)
         self.w2v_model = W2Vmodel(self.storage)
 
-    #def get_model(self, model): # получаем модель из Storage
 
+    #def get_model(self, model): # получаем модель из Storage
     def check_if_new_urls(self):  # проверяет есть ли новые ссылки
         self.new_urls = self.storage.get_new_urls()
         if self.new_urls:
@@ -29,7 +29,7 @@ class Engine:
         if self.check_if_new_urls():
             self.parser.load_articles(self.storage, self.new_urls)
 
-    #def send_to_model(self): # отправляет запрос в модель
 
+    #def send_to_model(self): # отправляет запрос в модель
     def get_result(self):  # возвращает результат
         return self.lda_model.show_result_info(), self.lsi_model.show_result_info(), self.w2v_model.show_result_info()
