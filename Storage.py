@@ -62,7 +62,7 @@ class Storage:
         return new_urls
 
     # должны принимать  полный список ссылок
-    def save_urls_status(self, urls_status_list):
+    def save_urls_status(self, urls_status_new):
         """
         save full list with urls status into file
         :param urls_status_list: list with urls status
@@ -71,18 +71,13 @@ class Storage:
         urls_status = []
         if os.path.isfile(self.urls_status_path):
             urls_status = self.get_urls('status')
-        urls_status = urls_status + urls_status_list
+        urls_status = urls_status + urls_status_new
         with open(self.urls_status_path, 'w', encoding="utf8") as file:
             s = json.dumps(urls_status, indent=2, ensure_ascii=False)
             file.write(s)
 
     # сохраняем статьи в файл articles
     def save_articles(self, articles_list):
-        """
-        save article list into file
-        :param articles_list: article list
-        :return:
-        """
         articles = []
         if os.path.isfile(self.articles_path):
             articles = self.get_articles()
@@ -91,7 +86,6 @@ class Storage:
             s = json.dumps(articles, indent=2, ensure_ascii=False)
             file.write(s)
 
-    # достаем текст статей из списка словарей с ссылками
     # открываем json со списком словарей статей и заисываем в saved_articles
     def get_articles(self):
         """
@@ -105,16 +99,15 @@ class Storage:
                 saved_articles.append(a)
         return saved_articles
 
+    # не используется
     def save_words_df(self):
         words_df = self.get_words_df()
         words_df.to_csv(self.words_list_path, index=False, encoding='utf8')
 
-    # надо проверить корректность записывания новых записей в дата фрейм
+    #  не используется
     def get_words_df_json(self):
         """
         get lists of normalized words from json file with article info
-        and save to
-        :param articles_list: articles info list
         :return: words data frame
         """
         articles_list = self.get_articles()
@@ -125,7 +118,7 @@ class Storage:
         #df_words_in_doc.to_csv(self.words_list_path, index=False, encoding='utf8')
         return df_words_in_doc
 
-    # получаем список нормализованых слов ИЗ ДАТАФРЕЙМА
+    # получаем список нормализованых слов ИЗ ДАТАФРЕЙМА не используется
     def get_words_df_from_csv(self):
         """
         get list of normalized words from csv file
@@ -142,9 +135,6 @@ class Storage:
         for columns in df.columns:
             words_list.append(df[columns].dropna().tolist())
         return words_list
-
-
-    # где-то надо еще перевести запросы в нормальный вид
 
     # записывает запросы в список queries
     def get_queries(self):
@@ -185,12 +175,6 @@ class Storage:
         return model
 
     def save_model(self, model, model_name):
-        """
-        save trained model into file
-        :param model: model
-        :param model_name: model name
-        :return:
-        """
         if model_name == 'lsi':
             save_path = self.lsi_path
         elif model_name == 'lda':
@@ -200,8 +184,8 @@ class Storage:
         model.save(save_path)
         print('Model %s saved '% model_name)
 
-    def query_dict_to_text(self, query_dict):
-        return query_dict['text']
+    #def query_dict_to_text(self, query_dict):
+    #   return query_dict['text']
 
     # сохраняет словарь для модели
     def save_dct(self):
@@ -218,7 +202,6 @@ class Storage:
             dct = self.save_dct()
         return dct
 
-    # ГДЕ ЭТО ДОЛЖНО БЫТЬ?
     # нормализуем запрос
     def query_to_vec(self, query_text):
         query_normalize = TextNormalizer.normalize(query_text)
@@ -229,8 +212,6 @@ class Storage:
     def get_corpus(self):
         dct = self.get_dct()
         documents = self.get_words_list()
-        #print("dct",dct)
-        #print("document",documents)
         return [dct.doc2bow(doc) for doc in documents]
 
     # сохраняем корпус

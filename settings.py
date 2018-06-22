@@ -4,7 +4,7 @@ import os
 
 # тесты
 tests_dir = 'Resourses'
-test_case_id = 4
+test_case_id = 2
 test_case_path = str.format('{0}/test_{1}', tests_dir, test_case_id)
 
 # содержание папки с тестами json с ссылками 

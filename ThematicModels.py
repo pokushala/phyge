@@ -16,7 +16,7 @@ class BaseModel:
         self.storage = storage
         self.dct = storage.get_dct()
         self.corpus = storage.get_corpus().copy()
-        #self.dct.save(self.storage.tmp_path + '/deerwester.dict')
+
         #corpora.MmCorpus.serialize(self.storage.tmp_path + '/deerwester.mm', self.corpus)
         self.base_model = storage.get_model(model_name)
         self.model_name = model_name
